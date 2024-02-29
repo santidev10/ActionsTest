@@ -1,0 +1,24 @@
+# tira error: no encuentra el path para docker
+# https://github.com/santidev10/ActionsTest/actions/runs/8084986417/job/22091535043
+name: Use the Composite Action with Actions #
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ciregistryocto.azurecr.io/gdk5m_linux:latest
+      credentials: 
+        username: ${{ secrets.AZURE_REGISTRY_USER }}
+        password: ${{ secrets.AZURE_REGISTRY_PASSWD }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Do anything elsee
+        run: echo Pretend to do other things 
+      # - name: Build and Push the image
+      #   uses: santidev10/CompositeAction@main
+      #   with:
+      #     registry_username: ${{secrets.REGISTRY_USERNAME}}
+      #     registry_password: ${{secrets.REGISTRY_PASSWORD}}
+      #     image_name: composite-test-app
+      #     tag: $GITHUB_RUN_NUMBER
